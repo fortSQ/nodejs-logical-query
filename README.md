@@ -10,7 +10,7 @@ where `-S` - `--save` / `-D` - `--save-dev`
 
 In your code
 
-```node
+```js
 let ExpressionParser = require('nodejs-logical-query')
 ```
 
@@ -20,7 +20,7 @@ Expression: `A && (B || C) || D && E`
 
 Set operand to true/false and define logical query:
 
-```node
+```js
 let expressionObject = {
     'OR': [
         {'AND': [
@@ -34,7 +34,7 @@ let expressionObject = {
 
 And get result
 
-```node
+```js
 let expressionParser = new ExpressionParser(expressionObject)
 console.log(expressionParser.result) // true
 ```
