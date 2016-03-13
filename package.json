@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-logical-query",
+  "version": "0.0.1",
+  "description": "Module for work with logical expression",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/run"
+  },
+  "engines": {
+    "node": ">=4.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fortSQ/nodejs-logical-query.git"
+  },
+  "author": "Dmitry V. Romanov <fortsq@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/fortSQ/nodejs-logical-query#readme"
+}
