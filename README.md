@@ -8,7 +8,7 @@
 
 where `-S` - `--save` / `-D` - `--save-dev`
 
-In your code
+In your code:
 
 ```js
 let ExpressionParser = require('nodejs-logical-query')
@@ -21,18 +21,24 @@ Expression: `A && (B || C) || D && E`
 Set operand to true/false and define logical query:
 
 ```js
+let A = true
+let B = false
+let C = true
+let D = false
+let E = true
+
 let expressionObject = {
     'OR': [
         {'AND': [
-            true,
-            {'OR': [false, true]}
+            A,
+            {'OR': [B, C]}
         ]},
-        {'AND': [false, true]}
+        {'AND': [D, E]}
     ]
 }
 ```
 
-And get result
+And get result:
 
 ```js
 let expressionParser = new ExpressionParser(expressionObject)

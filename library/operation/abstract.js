@@ -6,6 +6,7 @@ class AbstractOperation {
     constructor () {
         if (AbstractOperation === new.target) throw new TypeError('Cannot construct Abstract instances directly')
         this._boolValueList = [].slice.call(arguments, 0)
+        if (this._boolValueList.length < 2) throw new Error('Must 2 and more arguments')
         if (undefined === this.operate) throw new TypeError('Must override method')
     }
 

@@ -43,3 +43,5 @@ assert.strictEqual(getResult(), true)
 
 let typeWithoutClassOperand = new AndOperation(new Operand(true), new OrOperation(new Operand(false), true))
 assert.throws(_ => typeWithoutClassOperand.result, Error)
+
+assert.throws( _ => new AndOperation(new Operand(true)), Error)
