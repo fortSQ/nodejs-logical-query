@@ -9,3 +9,5 @@ assert.strictEqual(operandTrue.bool, true)
 
 let operandFalse = new Operand(false)
 assert.strictEqual(operandFalse.bool, false)
+
+assert.throws(_ => new Operand('true'), Error)

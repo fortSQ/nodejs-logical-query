@@ -12,6 +12,8 @@ assert.strictEqual(operandNotTrue.bool, false)
 let operandNotFalse = new NotOperand(false)
 assert.strictEqual(operandNotFalse.bool, true)
 
+assert.throws(_ => new Operand(1), Error)
+
 // ~(~false && ~false) == false || false
 let operandNotOperationAnd = new NotOperand(new AndOperation(new NotOperand(false), new NotOperand(false)))
 assert.strictEqual(operandNotOperationAnd.bool, false)
