@@ -4,6 +4,8 @@ class AbstractOperand {
     constructor (boolValue) {
         if (AbstractOperand === new.target) throw new TypeError('Cannot construct Abstract instances directly')
 
+        if ('function' === typeof boolValue) boolValue = boolValue.call(null)
+
         // TODO: Circular require
         let AbstractOperation = require('./../operation/abstract')
         if ('boolean' === typeof boolValue) {

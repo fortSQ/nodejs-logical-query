@@ -8,7 +8,7 @@ let Operand = require(global.projectPath + '/operand/operand')
 
 // A && (B || C || D) || E && F
 let A, B, C, D, E, F
-let getResult = _ => {
+let getResult = () => {
     let step1 = new OrOperation(new Operand(B), new Operand(C), new Operand(D))
     let step2 = new AndOperation(new Operand(E), new Operand(F))
     let step3 = new AndOperation(new Operand(A), step1)
@@ -42,6 +42,6 @@ F = false
 assert.strictEqual(getResult(), true)
 
 let typeWithoutClassOperand = new AndOperation(new Operand(true), new OrOperation(new Operand(false), true))
-assert.throws(_ => typeWithoutClassOperand.result, Error)
+assert.throws(() => typeWithoutClassOperand.result, Error)
 
-assert.throws( _ => new AndOperation(new Operand(true)), Error)
+assert.throws( () => new AndOperation(new Operand(true)), Error)

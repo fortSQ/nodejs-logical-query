@@ -25,11 +25,11 @@ let orInsideAnd = {'AND': [{'OR': [false, true]}, true]}
 assert.strictEqual(getResult(orInsideAnd), true)
 
 let fail = {'FAIL': [true, false]}
-assert.throws(_ => getResult(fail), Error)
+assert.throws(() => getResult(fail), Error)
 
 // A && (B || C) || D && E
 let A, B, C, D, E
-let getExpression = _ => {
+let getExpression = () => {
     return {
         'OR': [
             {'AND': [
