@@ -8,6 +8,7 @@ class AbstractOperation {
         this._boolValueList = [].slice.call(arguments, 0)
         if (this._boolValueList.length < 2) throw new Error('Must 2 and more arguments')
         if (undefined === this.operate) throw new TypeError('Must override method')
+        if (undefined === this.constructor.alias) throw new TypeError('Must override static method')
     }
 
     get result () {

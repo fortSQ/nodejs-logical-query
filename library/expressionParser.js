@@ -5,8 +5,8 @@ let OrOperation = require('./operation/or')
 let AndOperation = require('./operation/and')
 
 let shortcutClassnameList = {
-    'OR': OrOperation,
-    'AND': AndOperation,
+    [OrOperation.alias]: OrOperation,
+    [AndOperation.alias]: AndOperation,
 }
 
 class expressionParser {

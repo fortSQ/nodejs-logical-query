@@ -2,6 +2,7 @@
 
 let assert = require('assert')
 
+let AbstractOperation = require(global.projectPath + '/operation/abstract')
 let AndOperation = require(global.projectPath + '/operation/and')
 let OrOperation = require(global.projectPath + '/operation/or')
 let Operand = require(global.projectPath + '/operand/operand')
@@ -45,3 +46,6 @@ let typeWithoutClassOperand = new AndOperation(new Operand(true), new OrOperatio
 assert.throws(() => typeWithoutClassOperand.result, Error)
 
 assert.throws( () => new AndOperation(new Operand(true)), Error)
+
+class SomeOperation extends AbstractOperation { get operate () { return true }}
+assert.throws( () => new SomeOperation(new Operand(true), new Operand(false)), TypeError)
