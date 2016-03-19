@@ -2,7 +2,7 @@
 
 let assert = require('assert')
 
-let Operand = require(global.projectPath + '/operand/operand')
+let Operand = require(global.projectPath + '/operand')
 
 let operandTrue = new Operand(true)
 assert.strictEqual(operandTrue.bool, true)

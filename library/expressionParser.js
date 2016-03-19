@@ -1,12 +1,14 @@
 'use strict'
 
-let Operand = require('./operand/operand')
+let Operand = require('./operand')
 let OrOperation = require('./operation/or')
 let AndOperation = require('./operation/and')
+let NotOperation = require('./operation/not')
 
 let shortcutClassnameList = {
     [OrOperation.alias]: OrOperation,
     [AndOperation.alias]: AndOperation,
+    [NotOperation.alias]: NotOperation,
 }
 
 class expressionParser {
@@ -17,12 +19,20 @@ class expressionParser {
         let className = shortcutClassnameList[objectOperation]
         if (undefined === className) throw new Error(`Class for ${objectOperation} not found`)
 
-        let objectArray = objectExpression[objectOperation]
-        let argumentsFromObjectArray = []
-        objectArray.forEach(element => {
-            let objectElement = 'object' === typeof element ? this.buildOperation(element) : new Operand(element)
-            argumentsFromObjectArray.push(objectElement)
-        })
+        let objectValue = objectExpression[objectOperation]
+        let argumentsFromObjectArray;
+
+        let parseElement = (element) => 'object' === typeof element ? this.buildOperation(element) : new Operand(element)
+
+        if (objectValue instanceof Array) {
+            argumentsFromObjectArray = []
+            objectValue.forEach(element => {
+                let objectElement = parseElement(element)
+                argumentsFromObjectArray.push(objectElement)
+            })
+        } else {
+            argumentsFromObjectArray = [parseElement(objectValue)]
+        }
 
         return new className(...argumentsFromObjectArray)
     }

@@ -5,7 +5,7 @@ let assert = require('assert')
 let AbstractOperation = require(global.projectPath + '/operation/abstract')
 let AndOperation = require(global.projectPath + '/operation/and')
 let OrOperation = require(global.projectPath + '/operation/or')
-let Operand = require(global.projectPath + '/operand/operand')
+let Operand = require(global.projectPath + '/operand')
 
 // A && (B || C || D) || E && F
 let A, B, C, D, E, F
@@ -16,7 +16,6 @@ let getResult = () => {
     let step4 = new OrOperation(step3, step2)
     return step4.result
 }
-
 
 A = true
 B = false
@@ -45,7 +44,16 @@ assert.strictEqual(getResult(), true)
 let typeWithoutClassOperand = new AndOperation(new Operand(true), new OrOperation(new Operand(false), true))
 assert.throws(() => typeWithoutClassOperand.result, Error)
 
-assert.throws( () => new AndOperation(new Operand(true)), Error)
+assert.throws(() => new AbstractOperation(), TypeError)
+
+class SomeOperationWithoutOperate extends AbstractOperation {}
+assert.throws(
+    () => new SomeOperationWithoutOperate(new Operand(true)),
+    (error) => error instanceof TypeError && /Must override method operate()/.test(error)
+)
 
 class SomeOperation extends AbstractOperation { get operate () { return true }}
-assert.throws( () => new SomeOperation(new Operand(true), new Operand(false)), TypeError)
+assert.throws(
+    () => new SomeOperation(new Operand(true), new Operand(false)),
+    (error) => error instanceof TypeError && 'Must override static method alias()' === error.message
+)

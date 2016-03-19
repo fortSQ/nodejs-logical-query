@@ -16,7 +16,7 @@ let ExpressionParser = require('nodejs-logical-query')
 
 ### Example
 
-Expression: `A && (B || C) || D && E`
+Expression: `A && !(B || C) || D && !E`
 
 Set operand to true/false and define logical query:
 
@@ -24,16 +24,16 @@ Set operand to true/false and define logical query:
 let A = true
 let B = false
 let C = true
-let D = false
-let E = true
+let D = true
+let E = false
 
 let expressionObject = {
     'OR': [
         {'AND': [
             A,
-            {'OR': [B, C]}
+            {'NOT' : {'OR': [B, C]}}
         ]},
-        {'AND': [D, E]}
+        {'AND': [D, {'NOT': E}]}
     ]
 }
 ```

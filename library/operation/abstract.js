@@ -1,14 +1,13 @@
 'use strict'
 
-let AbstractOperand = require('./../operand/abstract')
+let Operand = require('./../operand')
 
 class AbstractOperation {
     constructor () {
         if (AbstractOperation === new.target) throw new TypeError('Cannot construct Abstract instances directly')
         this._boolValueList = [].slice.call(arguments, 0)
-        if (this._boolValueList.length < 2) throw new Error('Must 2 and more arguments')
-        if (undefined === this.operate) throw new TypeError('Must override method')
-        if (undefined === new.target.alias) throw new TypeError('Must override static method')
+        if (undefined === this.operate) throw new TypeError('Must override method operate()')
+        if (undefined === new.target.alias) throw new TypeError('Must override static method alias()')
     }
 
     get result () {
@@ -16,8 +15,8 @@ class AbstractOperation {
             this.boolValueList = this._boolValueList.map(
                 boolValue => {
                     if (boolValue instanceof AbstractOperation) return boolValue.result
-                    if (boolValue instanceof AbstractOperand) return boolValue.bool
-                    throw new Error('Values must be instance of AbstractOperation or AbstractOperand')
+                    if (boolValue instanceof Operand) return boolValue.bool
+                    throw new Error('Values must be instance of AbstractOperation or Operand')
                 }
             )
             this.boolResult = this.operate()

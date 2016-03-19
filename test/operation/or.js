@@ -3,7 +3,7 @@
 let assert = require('assert')
 
 let OrOperation = require(global.projectPath + '/operation/or')
-let Operand = require(global.projectPath + '/operand/operand')
+let Operand = require(global.projectPath + '/operand')
 
 let first = new OrOperation(new Operand(false), new Operand(false))
 assert.strictEqual(first.result, false)
@@ -28,3 +28,9 @@ assert.strictEqual(firstOrSecond.result, true)
 
 let triple = new OrOperation(new Operand(false), new Operand(true), new Operand(false))
 assert.strictEqual(triple.result, true)
+
+let oneArgument = new OrOperation(new Operand(true))
+assert.throws(
+    () => oneArgument.result,
+    (error) => error instanceof Error && 'Must 2 and more arguments' === error.message
+)

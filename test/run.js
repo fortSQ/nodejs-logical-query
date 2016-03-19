@@ -3,11 +3,10 @@
 global.projectPath = __dirname + '/../library'
 
 let pathList = [
-    './operand/abstract',
-    './operand/operand',
-    './operand/notOperand',
+    './operand',
     './operation/and',
     './operation/or',
+    './operation/not',
     './operation/general',
     './expressionParser',
 ]
