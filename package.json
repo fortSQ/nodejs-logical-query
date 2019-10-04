@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-logical-query",
+  "name": "@fortsq/nodejs-logical-query",
   "version": "0.0.8",
   "description": "Module for work with logical expression",
   "main": "index.js",
