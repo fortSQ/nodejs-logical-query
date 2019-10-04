@@ -15,5 +15,8 @@
   },
   "author": "Dmitry V. Romanov <fortsq@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/fortSQ/nodejs-logical-query#readme"
+  "homepage": "https://github.com/fortSQ/nodejs-logical-query#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
